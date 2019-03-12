@@ -5,6 +5,34 @@
 # @license http://www.gnu.org/licenses/lgpl.html LGPL v3 or later
 ###############
 
+# Beaker distributed web browser (https://beakerbrowser.com/)
+- regex: 'Beaker ?Browser(?:[/ ](\d+[\.\d]+))?'
+  name: 'Beaker Browser'
+  version: '$1'
+  engine:
+    default: 'Blink'
+
+# Qwant Mobile
+- regex: 'QwantMobile(?:/(\d+[\.\d]+))?'
+  name: 'Qwant Mobile'
+  version: '$1'
+  engine:
+    default: 'Gecko'
+
+# TenFourFox
+- regex: 'TenFourFox(?:/(\d+[\.\d]+))?'
+  name: 'TenFourFox'
+  version: '$1'
+  engine:
+    default: 'Gecko'
+
+# AOL Shield
+- regex: 'AOLShield(?:/(\d+[\.\d]+))?'
+  name: 'AOL Shield'
+  version: '$1'
+  engine:
+    default: 'Gecko'
+
 # Microsoft Edge (newer versions of IE)
 - regex: 'Edge[ /](\d+[\.\d]+)'
   name: 'Microsoft Edge'
@@ -71,6 +99,11 @@
   name: 'Aloha Browser'
   version: '$1'
 
+#Avast Secure Browser
+- regex: 'Avast(?:/(\d+[\.\d]+))?'
+  name: 'Avast Secure Browser'
+  version: '$1'
+
 #Epic
 - regex: 'Epic(?:/(\d+[\.\d]+))?'
   name: 'Epic'
@@ -109,6 +142,11 @@
   version: ''
   engine:
     default: '' # multiple
+
+#Oppo Browser
+- regex: 'OppoBrowser(?:/(\d+[\.\d]+))?'
+  name: 'Oppo Browser'
+  version: '$1'
 
 #Amigo
 - regex: 'Chrome/(\d+[\.\d]+).*MRCHROME'
@@ -204,6 +242,11 @@
   version: '$1'
   engine:
     default: 'Gecko'
+
+#Cunaguaro
+- regex: 'Cunaguaro(?:/(\d+[\.\d]+))?'
+  name: 'Cunaguaro'
+  version: '$1'
 
 #Firefox Focus / Firefox Klar
 - regex: '(?:Focus|Klar)(?:/(\d+[\.\d]+))?'
@@ -310,6 +353,9 @@
     default: 'Presto'
     versions:
       15: 'Blink'
+- regex: '(?:OPT)/(\d+[\.\d]+)'
+  name: 'Opera Touch'
+  version: '$1'
 - regex: 'Opera/(\d+[\.\d]+).+Opera Mobi'
   name: 'Opera Mobile'
   version: '$1'
@@ -341,13 +387,13 @@
     default: 'Presto'
     versions:
       15: 'Blink'
-- regex: '(?:Opera|OPR)[/ ]?(?:9.80.*Version/)?(\d+[\.\d]+)'
+- regex: '(?:Opera[/ ]?|OPR[/ ])(?:9.80.*Version/)?(\d+[\.\d]+)'
   name: 'Opera'
   version: '$1'
   engine:
     default: ''
     versions:
-      3.5: 'Elektra'
+      '3.5': 'Elektra'
       7: 'Presto'
       15: 'Blink'
 
@@ -476,8 +522,8 @@
   engine:
     default: 'Gecko'
     versions:
-      2.9.16: '' # multi engine
-      2.28: 'WebKit'
+      '2.9.16': '' # multi engine
+      '2.28': 'WebKit'
 
 # Liebao
 - regex: 'LBBrowser(?:[ /](\d+[\.\d]+))?'
@@ -543,6 +589,14 @@
   name: 'UC Browser'
   version: '$1'
 
+#Tenta Browser
+#It should be checked before Chrome since the UA contains the Chrome
+- regex: 'Tenta/(\d+[\.\d]+)'
+  name: 'Tenta Browser'
+  version: '$1'
+  engine:
+    default: 'Webkit'
+
 #Chrome
 - regex: 'CrMo(?:/(\d+[\.\d]+))?'
   name: 'Chrome Mobile'
@@ -575,6 +629,11 @@
     default: 'WebKit'
     versions:
       28: 'Blink'
+- regex: 'HeadlessChrome(?:/(\d+[\.\d]+))?'
+  name: 'Headless Chrome'
+  version: '$1'
+  engine:
+    default: 'Blink'
 - regex: 'Chrome(?:/(\d+[\.\d]+))?'
   name: 'Chrome'
   version: '$1'
@@ -821,7 +880,7 @@
   version: '$1'
   engine:
     default: 'Trident'
-- regex: 'IE[ /](\d+[\.\d]++)'
+- regex: 'IE[ /](\d+[\.\d]+)'
   name: 'Internet Explorer'
   version: '$1'
   engine:
@@ -908,6 +967,11 @@
 #NetPositive
 - regex: 'NetPositive(?:/(\d+[\.\d]+))?'
   name: 'NetPositive'
+  version: '$1'
+
+# NTENT Browser
+- regex: 'NTENTBrowser(?:/(\d+[\.\d]+))?'
+  name: 'NTENT Browser'
   version: '$1'
 
 #Obigo
@@ -1076,3 +1140,10 @@
 - regex: 'Dorado WAP-Browser[/ ](\d+[\.\d]+)'
   name: 'Dorado'
   version: '$1'
+
+#NetSurf
+- regex: 'NetSurf(?:/(\d+[\.\d]+))?'
+  name: 'NetSurf'
+  version: '$1'
+  engine:
+    default: 'NetSurf'
