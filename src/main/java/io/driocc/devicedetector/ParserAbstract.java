@@ -118,7 +118,7 @@ public abstract class ParserAbstract implements Serializable {
 		ver = Utils.isEmpty(ver) ? "" : ver;
 		Integer maxMinorParts = this.versionConsultant.getMaxMinorParts();
 		if (maxMinorParts!=null && Utils.countChar(versionString, '.') > maxMinorParts) {
-            String[] versionParts = versionString.split(".");
+            String[] versionParts = versionString.split("\\.");
             List<String> newVersionPartsList = Arrays.asList(versionParts).subList(0, maxMinorParts + 1);
             ver = Joiner.on(".").join(newVersionPartsList);
         }

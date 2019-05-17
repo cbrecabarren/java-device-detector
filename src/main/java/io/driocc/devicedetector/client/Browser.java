@@ -324,7 +324,7 @@ public class Browser extends ClientParserAbstract {
 	            	//System.out.println(browserVersion + " vs " + version.toString());
 	            	//get the left part and compare, true if equal
 	            	String browserVersionLeft = browserVersion.contains(".")?browserVersion.split("\\.")[0]:browserVersion;
-	            	String versionLeft = versionStr.contains(".")?versionStr.split(".")[0]:versionStr;
+	                String versionLeft = versionStr.contains(".")?versionStr.split("\\.")[0]:versionStr;
 	            	if(Utils.isNumeric(browserVersionLeft) && Utils.isNumeric(versionLeft)) {
 	            		if(Integer.valueOf(browserVersionLeft).compareTo(Integer.valueOf(versionLeft))==0) {
 	            			engine = versions.get(version).toString();
