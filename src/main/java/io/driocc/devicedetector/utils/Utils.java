@@ -1,5 +1,9 @@
 package io.driocc.devicedetector.utils;
 
+import com.google.common.primitives.Ints;
+
+import java.util.Optional;
+
 public class Utils {
 
 	public static boolean isNumeric(final CharSequence cs) {
@@ -34,9 +38,11 @@ public class Utils {
 	      i++;
 	    }
 	    // compare first non-equal ordinal number
-	    if (i < vals1.length && i < vals2.length) {
-	        int diff = Integer.valueOf(vals1[i]).compareTo(Integer.valueOf(vals2[i]));
-	        return Integer.signum(diff);
+		if (i < vals1.length && i < vals2.length) {
+			Integer value1 = Optional.ofNullable(Ints.tryParse(vals1[i])).orElse(0);
+			Integer value2 = Optional.ofNullable(Ints.tryParse(vals2[i])).orElse(0);
+			int diff = value1.compareTo(value2);
+			return Integer.signum(diff);
 	    }
 	    // the strings are equal or one string is a substring of the other
 	    // e.g. "1.2.3" = "1.2.3" or "1.2.3" < "1.2.3.4"
@@ -48,7 +54,7 @@ public class Utils {
 		for( int i=0; i<s.length(); i++ ) {
 		    if( s.charAt(i) == c ) {
 		        counter++;
-		    } 
+		    }
 		}
 		return counter;
 	}

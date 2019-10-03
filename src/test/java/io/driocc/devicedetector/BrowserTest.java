@@ -30,6 +30,7 @@ public class BrowserTest {
 		uas.add("Dalvik/1.6.0 (Linux; U; Android 4.4.4; OPPO R7st Build/KTU84P");
 		uas.add("Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53");
 		uas.add("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36");
+
 				
 		Browser b = new Browser();
 		for(String ua : uas) {
