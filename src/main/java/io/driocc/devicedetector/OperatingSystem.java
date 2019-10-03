@@ -190,10 +190,12 @@ public class OperatingSystem extends ParserAbstract {
 				if(Utils.isNumeric(groupStr)) {
 					Integer cg = Integer.valueOf(groupStr);
 					String regex = osRegex.get("regex").toString();
-					Pattern pattern = Pattern.compile(regex);
-					Matcher matcher = pattern.matcher(userAgent);
-					if(matcher.find() && matcher.groupCount()>=cg) {
-						ret = matcher.group(cg);
+					Pattern pattern = PatternCaching.getPattern(regex);
+					if(null != pattern) {
+						Matcher matcher = pattern.matcher(userAgent);
+						if(matcher.find() && matcher.groupCount()>=cg) {
+							ret = matcher.group(cg);
+						}
 					}
 				}else{
 					ret = versionStr;

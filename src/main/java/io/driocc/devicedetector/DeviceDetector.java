@@ -1,31 +1,18 @@
 package io.driocc.devicedetector;
 
+import io.driocc.devicedetector.client.*;
+import io.driocc.devicedetector.custom.CompositeDetectResult;
+import io.driocc.devicedetector.custom.DetectConsultant;
+import io.driocc.devicedetector.device.*;
+import io.driocc.devicedetector.utils.Utils;
+
+import javax.annotation.concurrent.ThreadSafe;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.annotation.concurrent.ThreadSafe;
-
-import io.driocc.devicedetector.client.Browser;
-import io.driocc.devicedetector.client.ClientParserAbstract;
-import io.driocc.devicedetector.client.FeedReader;
-import io.driocc.devicedetector.client.Library;
-import io.driocc.devicedetector.client.MediaPlayer;
-import io.driocc.devicedetector.client.MobileApp;
-import io.driocc.devicedetector.client.PIM;
-import io.driocc.devicedetector.custom.CompositeDetectResult;
-import io.driocc.devicedetector.custom.DetectConsultant;
-import io.driocc.devicedetector.device.Camera;
-import io.driocc.devicedetector.device.CarBrowser;
-import io.driocc.devicedetector.device.Console;
-import io.driocc.devicedetector.device.DeviceParserAbstract;
-import io.driocc.devicedetector.device.HbbTv;
-import io.driocc.devicedetector.device.Mobile;
-import io.driocc.devicedetector.device.PortableMediaPlayer;
-import io.driocc.devicedetector.utils.Utils;
 
 @ThreadSafe
 public class DeviceDetector implements Serializable {
@@ -36,7 +23,7 @@ public class DeviceDetector implements Serializable {
      * Current version number of DeviceDetector
      */
     //static final String VERSION = "3.10.2";
-	
+
     /**
      * Holds all registered client types
      * @var array
@@ -72,11 +59,11 @@ public class DeviceDetector implements Serializable {
         botParser = new Bot();
         vendorParser = new VendorFragment();
     }
-    
+
     public List<ClientParserAbstract> getClientParsers(){
         return this.clientParsers;
     }
-    
+
     public List<DeviceParserAbstract> getDeviceParsers(){
         return this.deviceParsers;
     }
@@ -149,7 +136,7 @@ public class DeviceDetector implements Serializable {
         }
         return false;
     }
-    
+
     private static Pattern LETTER_PATTERN = Pattern.compile("([a-z])", Pattern.CASE_INSENSITIVE);
     /**
      * Triggers the parsing of the current user agent
@@ -182,7 +169,7 @@ public class DeviceDetector implements Serializable {
         ret.setDevice(device);
         return ret;
     }
-    
+
     /**
      * Parses the UA for bot information using the Bot parser
      */
@@ -331,21 +318,25 @@ public class DeviceDetector implements Serializable {
         return this.osParser.parse(userAgent);
     }
 
-    public List<String> matchUserAgent(String userAgent, String regex){
-    	if(Utils.isEmpty(userAgent)) {
+	public List<String> matchUserAgent(String userAgent, String regex){
+		if(Utils.isEmpty(userAgent)) {
 			return null;
 		}
 		String regexStr = "(?:^|[^A-Z_-])(?:" + regex + ")";
-		Pattern pattern = Pattern.compile(regexStr, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(userAgent);
 		List<String> matches = null;
-		while(matcher.find()) {
-			if(matches==null) {
-				matches = new ArrayList<String>();
+		Pattern pattern = PatternCaching.getPatternInsensitive(regexStr);
+		if(null != pattern) {
+			Matcher matcher = pattern.matcher(userAgent);
+
+			while(matcher.find()) {
+				if(matches==null) {
+					matches = new ArrayList<String>();
+				}
+				matches.add(matcher.group());
 			}
-			matches.add(matcher.group());
 		}
+
 		return matches;
-    }
+	}
 
 }

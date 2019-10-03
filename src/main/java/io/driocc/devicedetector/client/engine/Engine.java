@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.driocc.devicedetector.DetectResult;
+import io.driocc.devicedetector.PatternCaching;
 import io.driocc.devicedetector.client.ClientParserAbstract;
 
 /**
@@ -79,17 +80,19 @@ public class Engine extends ClientParserAbstract {
         ret.setEngineVersion(browserEngineVersion);
 		return ret;
     }    
-    public String buildEngineVersion(String userAgent, String engine) {
-    	if(engine==null || "".equals(engine)) {
-    		return null;
-    	}
-    	String ret = null;
-    	String reg = engine+"\\s*/?\\s*(((?=\\d+\\.\\d)\\d+[.\\d]*)|(.\\d{1,7}(?=(?:\\D|$))))";
-    	Pattern pattern = Pattern.compile(reg);
-		Matcher matcher = pattern.matcher(userAgent);
-		if(matcher.find()){
-			ret = matcher.group();
+	public String buildEngineVersion(String userAgent, String engine) {
+		if(engine==null || "".equals(engine)) {
+			return null;
 		}
-    	return ret;
-    }
+		String ret = null;
+		String reg = engine+"\\s*/?\\s*(((?=\\d+\\.\\d)\\d+[.\\d]*)|(.\\d{1,7}(?=(?:\\D|$))))";
+		Pattern pattern = PatternCaching.getPattern(reg);
+		if(null != pattern) {
+			Matcher matcher = pattern.matcher(userAgent);
+			if(matcher.find()){
+				ret = matcher.group();
+			}
+		}
+		return ret;
+	}
 }

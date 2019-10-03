@@ -1,5 +1,10 @@
 package io.driocc.devicedetector;
 
+import com.google.common.base.Joiner;
+import io.driocc.devicedetector.custom.VersionConsultant;
+import io.driocc.devicedetector.utils.Utils;
+import io.driocc.devicedetector.yaml.YamlParser;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,12 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.google.common.base.Joiner;
-
-import io.driocc.devicedetector.custom.VersionConsultant;
-import io.driocc.devicedetector.utils.Utils;
-import io.driocc.devicedetector.yaml.YamlParser;
 
 public abstract class ParserAbstract implements Serializable {
 
@@ -71,11 +70,16 @@ public abstract class ParserAbstract implements Serializable {
 			return null;
 		}
 		String reg = "(?:^|[^A-Z0-9\\-_]|[^A-Z0-9\\-]_|sprd-)(?:" + regex + ")";
-		Pattern pattern = Pattern.compile(reg);
-		Matcher matcher = pattern.matcher(userAgent);
-		while(matcher.find()) {
-			matchs.add(matcher.group());
+		Pattern pattern = null;
+
+		pattern = PatternCaching.getPattern(reg);
+		if(null != pattern) {
+			Matcher matcher = pattern.matcher(userAgent);
+			while(matcher.find()) {
+				matchs.add(matcher.group());
+			}
 		}
+
 		return matchs;
 	}
 	
