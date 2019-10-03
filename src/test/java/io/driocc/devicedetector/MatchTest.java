@@ -31,8 +31,8 @@ public class MatchTest {
 		while(matcher.find()) {
 			if(matches!=null){
 				matches = new ArrayList<String>();
+				matches.add(matcher.group());
 			}
-			matches.add(matcher.group());
 		}
 		return matches;
     }
