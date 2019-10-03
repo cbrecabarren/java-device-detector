@@ -61,6 +61,13 @@
     name: 'Alexa Internet'
     url: 'http://www.alexa.com'
 
+- regex: 'Amazon[ -]Route ?53[ -]Health[ -]Check[ -]Service'
+  name: 'Amazon Route53 Health Check'
+  category: 'Service Agent'
+  producer:
+    name: 'Amazon Web Services'
+    url: 'https://aws.amazon.com/'
+
 - regex: 'AmorankSpider'
   name: 'Amorank Spider'
   category: 'Crawler'
@@ -309,6 +316,15 @@
     name: 'Datadog'
     url: 'https://www.datadoghq.com/'
 
+- regex: 'Datanyze'
+  name: 'Datanyze'
+  url: ''
+  category: 'Crawler'
+  producer:
+    name: 'Datanyze'
+    url: 'https://www.datanyze.com'
+
+
 - regex: 'Dataprovider'
   name: 'Dataprovider'
   category: 'Crawler'
@@ -357,7 +373,7 @@
     name: 'SEOmoz, Inc.'
     url: 'http://moz.com/'
 
-- regex: 'DuckDuck'
+- regex: 'DuckDuck(?:Go-Favicons-)?Bot'
   name: 'DuckDuckGo Bot'
   category: 'Search bot'
   url: 'https://duckduckgo.com/duckduckbot'
@@ -586,7 +602,7 @@
     name: 'Visual Meta'
     url: 'https://www.shopalike.cz/'
 
-- regex: 'Googlebot(-Mobile|-Image|-Video|-News)?|Feedfetcher-Google|Google-Test|Google-Site-Verification|Google Web Preview|AdsBot-Google(-Mobile)?|Google-Adwords-Instant|Mediapartners-Google|Google.*/\+/web/snippet|GoogleProducer|Google[ -]Publisher[ -]Plugin|Google-Shopping-Quality|Google-Adwords-DisplayAds|Google-Assess|Google-AdWords-Express|Google-speakr'
+- regex: 'Googlebot(-Mobile|-Image|-Video|-News)?|Feedfetcher-Google|Google-Test|Google-Site-Verification|Google Web Preview|AdsBot-Google(-Mobile)?|Google-Adwords-Instant|APIs-Google|Mediapartners-Google|Google.*/\+/web/snippet|GoogleProducer|Google[ -]Publisher[ -]Plugin|Google-Shopping-Quality|Google-Adwords-DisplayAds|Google-Assess|Google-AdWords-Express|Google-speakr|Google-Read-Aloud'
   name: 'Googlebot'
   category: 'Search bot'
   url: 'http://www.google.com/bot.html'
@@ -818,7 +834,7 @@
 
 - regex: 'netEstate NE Crawler'
   name: 'netEstate'
-  category: 'Analytics SEO Crawler'
+  category: 'Crawler'
   url: 'http://www.website-datenbank.de/Impressum'
   producer:
     name: 'netEstate GmbH'
@@ -1143,6 +1159,14 @@
     name: 'SISTRIX GmbH'
     url: 'http://www.sistrix.de'
 
+- regex: 'SISTRIX Optimizer'
+  name: 'SISTRIX Optimizer'
+  category: 'Crawler'
+  url: 'https://optimizer.sistrix.com'
+  producer:
+    name: 'SISTRIX GmbH'
+    url: 'http://www.sistrix.de'
+
 - regex: 'SiteSucker'
   name: 'SiteSucker'
   category: 'Crawler'
@@ -1247,7 +1271,7 @@
   category: 'Search bot'
 
 - regex: 'TelegramBot'
-  name: 'TelgramBot'
+  name: 'TelegramBot'
   url: 'https://telegram.org/blog/bot-revolution'
 
 - regex: 'TLSProbe'
@@ -1719,6 +1743,9 @@
 - regex: 'Server Density Service Monitoring.*'
   name: 'Server Density'
 
+- regex: 'RSSRadio \(Push Notification Scanner;support@dorada\.co\.uk\)'
+  name: 'RSSRadio Bot'
+
 - regex: '(A6-Indexer|nuhk|TsolCrawler|Yammybot|Openbot|Gulper Web Bot|grub-client|Download Demon|SearchExpress|Microsoft URL Control|borg|altavista|dataminr.com|tweetedtimes.com|TrendsmapResolver|teoma|blitzbot|oegp|furlbot|http%20client|polybot|htdig|mogimogi|larbin|scrubby|searchsight|seekbot|semanticdiscovery|snappy|vortex(?! Build)|zeal|fast-webcrawler|converacrawler|dataparksearch|findlinks|BrowserMob|HttpMonitor|ThumbShotsBot|URL2PNG|ZooShot|GomezA|Google SketchUp|Read%20Later|Minimo|RackspaceBot)'
   name: 'Generic Bot'
 
@@ -1727,6 +1754,12 @@
   producer:
     name: 'Sentry'
     url: 'https://sentry.io'
+
+- regex: '^Spotify'
+  name: 'Spotify'
+  producer:
+    name: 'Spotify'
+    url: 'https://www.spotify.com'
 
 # Generic detections
 
